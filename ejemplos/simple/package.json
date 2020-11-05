@@ -1,0 +1,26 @@
+{
+  "name": "plantilla-web",
+  "version": "0.0.1",
+  "description": "Plantilla para iniciar proyectos web rápidamente.",
+  "browser": "dist/index.js",
+  "author": "Juan Camilo González Jiménez <info@juancgonzalez.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "yarn run clean && parcel src/index.html -p 8080 --https",
+    "build": "yarn run clean && parcel build src/index.html"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
+    "sass": "^1.28.0"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
