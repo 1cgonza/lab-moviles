@@ -1,8 +1,6 @@
-# Tócame
+# Proyecto final
 
-Inspirado en el trabajo de yehwan.yen.song - https://www.instagram.com/p/CAkrtJCBIEv/?igshid=qlbvbze1y1e7
-
-La comunicación entre usuarios se hace utilizando WebSockets en un servidor Express.
+La comunicación entre usuarios se hace utilizando WebRTC y WebSockets.
 
 ## Instalación
 
