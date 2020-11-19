@@ -1,0 +1,29 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+#mano {
+  transition: all 0.1s ease-in-out;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+
+  &:focus {
+    outline: none;
+  }
+}
