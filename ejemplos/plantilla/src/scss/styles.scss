@@ -1,0 +1,41 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.esconder {
+  display: none;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#menu {
+  position: absolute;
+  z-index: 2;
+
+  .usuario {
+    display: inline-block;
+    font-size: 2em;
+    padding: 0.5em;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebRTC</title>
+    <link rel="stylesheet" href="./scss/styles.scss" />
+    <script
+      type="module"
+      src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.js"
+    ></script>
+  </head>
+  <body>
+    <div id="inicio" class="esconder">
+      <input type="text" id="usuario" />
+      <button id="conectarse" disabled>Conectarse</button>
+    </div>
+
+    <div id="app" class="">
+      <div id="menu"></div>
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
