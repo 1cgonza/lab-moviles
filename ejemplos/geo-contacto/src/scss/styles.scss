@@ -1,0 +1,84 @@
+@import 'general';
+@import 'typografia';
+
+.esconder {
+  display: none;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#intro {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(57, 49, 114, 0.7);
+  font-family: $cursiva;
+  position: fixed;
+  z-index: 2;
+
+  #iniciar {
+    font-size: 2em;
+    display: inline-block;
+    position: relative;
+    color: whitesmoke;
+    background-color: rgba(57, 49, 114, 0.7);
+    padding: 0.3em;
+    cursor: crosshair;
+  }
+}
+
+#mensajes {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(57, 49, 114, 0.7);
+  position: fixed;
+  z-index: 9;
+  display: none;
+
+  &.mostrar {
+    display: block;
+  }
+
+  #texto {
+    color: antiquewhite;
+    pointer-events: none;
+    font-family: $cursiva;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 40vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation-duration: 2.25s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+    &.palpitar {
+      animation-name: palpitar;
+    }
+  }
+}
+
+@keyframes palpitar {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+
+#consola {
+  font-size: 0.7em;
+  background-color: black;
+  width: 40%;
+  padding: 1em;
+  color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
