@@ -1,0 +1,46 @@
+{
+  "name": "plantilla",
+  "version": "0.0.1",
+  "description": "Plantilla para facilitar el desarrollo de la plataforma que vamos a utilizar en el proyecto final",
+  "main": "servidor.js",
+  "author": "Juan Camilo González Jiménez <info@juancgonzalez.com>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "yarn run clean && nodemon servidor.js",
+    "build": "yarn run clean && parcel build src/index.html"
+  },
+  "dependencies": {
+    "eventemitter3": "^4.0.7",
+    "express": "^4.17.1",
+    "johnny-five": "^2.0.0",
+    "simple-peer": "^9.9.3",
+    "uuid": "^8.3.1",
+    "ws": "^7.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.8",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "nodemon": "^2.0.6",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.2.0",
+    "rimraf": "^3.0.2",
+    "sass": "^1.29.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "nodemonConfig": {
+    "watch": "./servidor.js"
+  }
+}
