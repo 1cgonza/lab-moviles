@@ -5,11 +5,14 @@
   display: none;
 }
 
+#menu {
+}
+
 #canvas {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 #intro {
@@ -18,7 +21,7 @@
   background-color: rgba(57, 49, 114, 0.7);
   font-family: $cursiva;
   position: fixed;
-  z-index: 2;
+  z-index: 3;
 
   #iniciar {
     font-size: 2em;
@@ -28,6 +31,11 @@
     background-color: rgba(57, 49, 114, 0.7);
     padding: 0.3em;
     cursor: crosshair;
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, 0);
   }
 }
 
@@ -81,4 +89,8 @@
   position: fixed;
   top: 0;
   right: 0;
+}
+
+#plano {
+  z-index: 1;
 }
