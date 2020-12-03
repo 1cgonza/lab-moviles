@@ -16,3 +16,9 @@ body {
   min-width: 100vw;
   min-height: 100vh;
 }
+
+#video {
+  transform: scaleX(-1);
+  position: absolute;
+  z-index: 1;
+}

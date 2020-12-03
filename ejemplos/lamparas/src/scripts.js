@@ -5,8 +5,7 @@ const numeroDeLamparas = 10;
 const com = new Com();
 
 // este sirve a la hora de probar, muestra la cuadricula en pantalla.
-// volver false cuando se quiera quitar para verlo sin cuadricula.
-const mostrarCuadricula = true;
+const mostrarCuadricula = true; // false para verlo sin cuadricula.
 
 function buscarLampara(x) {
   const anchoCuadrante = window.innerWidth / numeroDeLamparas;
@@ -37,12 +36,20 @@ function cuandoDejamosDeTocar(e) {
   com.enviarDatosAlServidor({ accion: 'apagar', lampara: cualEstaPrendida });
 }
 
-com.on('conectado', () => {
+function iniciarTacto() {
   const superficie = document.body;
   superficie.addEventListener('touchstart', cuandoEmpezamosATocar, false);
   superficie.addEventListener('mousedown', cuandoEmpezamosATocar, false);
   superficie.addEventListener('touchend', cuandoDejamosDeTocar, false);
   superficie.addEventListener('mouseup', cuandoDejamosDeTocar, false);
+}
+
+/**
+ * Sucede cuando nos conectamos al servidor y websockets.
+ * Debemos esperar esta señal antes de comenzar.
+ */
+com.on('conectado', () => {
+  iniciarTacto();
 });
 
 // Esto es lo que dibuja la cuadricula para probar.

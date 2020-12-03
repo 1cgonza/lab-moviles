@@ -6,7 +6,15 @@ const entrada = 'src/index.html';
 const opciones = {}; // Opciones en https://parceljs.org/api.html
 const compilador = new Compilador(entrada, opciones);
 const { v4: uuidv4 } = require('uuid');
+const puerto = 8080;
 
+let proximoEnIniciarLlamada;
+
+/**
+ * Controlamos el arduino con JS usando la librería "johnny-five".
+ * Desde el Arduino IDE, debemos cargar en la placa el programa de:
+ * Archivo -> Ejemplos -> Firmata -> StandardFirmataPlus
+ */
 const { Board, Led } = require('johnny-five');
 const board = new Board();
 const lamparas = {
@@ -30,11 +38,39 @@ app.use(compilador.middleware());
 const ws = new WebSocket.Server({ server });
 let usuariosConectados = {};
 
+function existenOtrosUsuariosConectados() {
+  return Object.keys(usuariosConectados).length > 1;
+}
+
 ws.on('connection', (usuario) => {
   // Creamos un id único en cada usuario usando la libreria uuid
   usuario.id = uuidv4();
+
   // agregamos este nuevo usuario a una lista global que va a contener todos los ususarios conectados actualmente.
   usuariosConectados[usuario.id] = usuario;
+
+  usuario.send(
+    JSON.stringify({
+      accion: 'bienvenida',
+      miId: usuario.id,
+    })
+  );
+
+  // Para probar vamos a hacer que el primero en conectarse sea el que transmite su webcam.
+  if (!existenOtrosUsuariosConectados()) {
+    usuario.send(JSON.stringify({ accion: 'eresTransmisor' }));
+    proximoEnIniciarLlamada = usuario;
+  } else {
+    proximoEnIniciarLlamada.send(
+      JSON.stringify({
+        accion: 'llamarA',
+        llamarA: usuario.id,
+      })
+    );
+
+    usuario.send(JSON.stringify({ accion: 'eresReceptor', recibirLlamadaDe: proximoEnIniciarLlamada.id }));
+    // proximoEnIniciarLlamada = usuario;
+  }
 
   // Esperamos a que lleguen mensajes de este ususario.
   usuario.on('message', (datos) => {
@@ -50,6 +86,17 @@ ws.on('connection', (usuario) => {
         if (!arduinoListo) return;
         lamparas[`lampara${datos.lampara}`].off();
         break;
+
+      case 'ofrecerSeñal':
+        console.log(usuariosConectados, datos.enviarA);
+        usuariosConectados[datos.enviarA].send(
+          JSON.stringify({
+            accion: 'conectarSeñal',
+            idDelUsuario: usuario.id,
+            señal: datos.signal,
+          })
+        );
+        break;
     }
   });
 
@@ -62,6 +109,6 @@ ws.on('connection', (usuario) => {
   });
 });
 
-server.listen(8080, () => {
-  console.log(`La página se puede ver en: http://localhost:8080`);
+server.listen(puerto, () => {
+  console.log(`La página se puede ver en: localhost:${puerto}`);
 });
