@@ -10,3 +10,4 @@ node_modules
 .Trashes
 ehthumbs.db
 Thumbs.db
+fake-module-for-pure-html-input.*
