@@ -32,6 +32,8 @@ board.on('ready', () => {
   arduinoListo = true;
   lamparas.lampara1 = new Led(7);
   lamparas.lampara2 = new Led(10);
+  lamparas.lampara3 = new Led(8);
+  lamparas.lampara4 = new Led(11);
 });
 
 app.use(compilador.middleware());
@@ -78,17 +80,17 @@ ws.on('connection', (usuario) => {
 
     switch (datos.accion) {
       case 'prender':
-        if (!arduinoListo) return;
-        lamparas[`lampara${datos.lampara}`].on();
-        break;
-
-      case 'apagar':
-        if (!arduinoListo) return;
+        if (!arduinoListo || !lamparas.hasOwnProperty(`lampara${datos.lampara}`)) return;
         lamparas[`lampara${datos.lampara}`].off();
         break;
 
+      case 'apagar':
+        if (!arduinoListo || !lamparas.hasOwnProperty(`lampara${datos.lampara}`)) return;
+        lamparas[`lampara${datos.lampara}`].on();
+        break;
+
       case 'ofrecerSeñal':
-        console.log(usuariosConectados, datos.enviarA);
+        if (!usuariosConectados.hasOwnProperty(datos.enviarA)) return;
         usuariosConectados[datos.enviarA].send(
           JSON.stringify({
             accion: 'conectarSeñal',
@@ -102,8 +104,6 @@ ws.on('connection', (usuario) => {
 
   // Esperamos a ver si el usuario se desconecta.
   usuario.on('close', () => {
-    console.log('Se desconecto', usuario.id);
-
     // Por último eliminamos al ususario de la lista de usuarios conectados.
     delete usuariosConectados[usuario.id];
   });

@@ -1,24 +1,7 @@
 import Emitter from 'eventemitter3';
 import Peer from 'simple-peer';
 const video = document.getElementById('video');
-/**
- * TODO:
- * - reproducir video luego de un clic
- */
-// const config = {
-//   iceServers: [
-//     {
-//       urls: 'stun:stun.l.google.com:19302',
-//     },
-//     // public turn server from https://gist.github.com/sagivo/3a4b2f2c7ac6e1b5267c2f1f59ac6c6b
-//     // set your own servers here
-//     {
-//       url: 'turn:192.158.29.39:3478?transport=udp',
-//       credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-//       username: '28224511:1379330808',
-//     },
-//   ],
-// };
+const inicio = document.getElementById('iniciar');
 
 const config = {
   iceServers: [
@@ -26,7 +9,7 @@ const config = {
       urls: 'stun:stun.l.google.com:19302',
     },
     {
-      url: 'turn:numb.viagenie.ca',
+      urls: 'turn:numb.viagenie.ca',
       credential: 'muazkh',
       username: 'webrtc@live.com',
     },
@@ -52,14 +35,14 @@ export default class Com extends Emitter {
     this._conexion.onmessage = this._recibiendoMensaje;
     this.transmision;
 
-    video.onloadedmetadata = () => {
+    video.addEventListener('loadedmetadata', () => {
       const { aspectRatio, width, height } = this.transmision.getVideoTracks()[0].getSettings();
       console.log('aspectRatio', aspectRatio);
       console.log('width', width);
       console.log('height', height);
 
       video.play();
-    };
+    });
   }
 
   _inicio = () => {
@@ -100,7 +83,10 @@ export default class Com extends Emitter {
         break;
       case 'conectarSeñal':
         console.log('negociando señal');
-        this.amigos[datos.idDelUsuario].signal(datos.señal);
+        if (this.amigos.hasOwnProperty(datos.idDelUsuario)) {
+          this.amigos[datos.idDelUsuario].signal(datos.señal);
+        }
+
         break;
       case 'llamarA':
         console.log('Llamar a:', datos.llamarA);
@@ -128,12 +114,11 @@ export default class Com extends Emitter {
 
     amigo.on('stream', (transmision) => {
       console.log('Llego la transmisión', transmision);
-      if ('srcObject' in video) {
-        this.transmision = transmision;
-        video.srcObject = transmision;
-      } else {
-        video.src = window.URL.createObjectURL(transmision);
-      }
+      this.transmision = transmision;
+      inicio.classList.remove('esconder');
+
+      inicio.onclick = this.entrar;
+      inicio.ontouchstart = this.entrar;
     });
 
     amigo.on('close', () => {
@@ -157,6 +142,17 @@ export default class Com extends Emitter {
 
     this.amigos[amigoId] = amigo;
   }
+
+  entrar = (e) => {
+    e.preventDefault();
+    inicio.classList.add('esconder');
+
+    if ('srcObject' in video) {
+      video.srcObject = this.transmision;
+    } else {
+      video.src = window.URL.createObjectURL(this.transmision);
+    }
+  };
 
   enviarDatosAlServidor(datos) {
     this._conexion.send(JSON.stringify(datos));

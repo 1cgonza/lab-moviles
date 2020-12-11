@@ -1,8 +1,9 @@
 import Com from './utilidades/comunicacion';
 // El numero de la lampara que se debe prender
 let cualEstaPrendida;
-const numeroDeLamparas = 10;
+const numeroDeLamparas = 4;
 const com = new Com();
+const superficie = document.getElementById('superficieTacto');
 
 // este sirve a la hora de probar, muestra la cuadricula en pantalla.
 const mostrarCuadricula = true; // false para verlo sin cuadricula.
@@ -12,7 +13,7 @@ function buscarLampara(x) {
 
   for (let i = 0; i < numeroDeLamparas; i++) {
     const xMin = anchoCuadrante * i;
-    const xMax = i < 9 ? anchoCuadrante * (i + 1) : window.innerWidth;
+    const xMax = i < 3 ? anchoCuadrante * (i + 1) : window.innerWidth;
 
     if (x > xMin && x < xMax) {
       return i + 1;
@@ -20,7 +21,7 @@ function buscarLampara(x) {
   }
 }
 
-function cuandoEmpezamosATocar(e) {
+const cuandoEmpezamosATocar = (e) => {
   e.preventDefault();
   const x = e.clientX || e.touches[0].clientX;
   const lampara = buscarLampara(x);
@@ -28,7 +29,7 @@ function cuandoEmpezamosATocar(e) {
   console.log('prender', lampara);
 
   com.enviarDatosAlServidor({ accion: 'prender', lampara: lampara });
-}
+};
 
 function cuandoDejamosDeTocar(e) {
   e.preventDefault();
@@ -37,7 +38,6 @@ function cuandoDejamosDeTocar(e) {
 }
 
 function iniciarTacto() {
-  const superficie = document.body;
   superficie.addEventListener('touchstart', cuandoEmpezamosATocar, false);
   superficie.addEventListener('mousedown', cuandoEmpezamosATocar, false);
   superficie.addEventListener('touchend', cuandoDejamosDeTocar, false);
@@ -56,7 +56,7 @@ com.on('conectado', () => {
 if (mostrarCuadricula) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-
+  canvas.id = 'canvas';
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 

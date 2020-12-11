@@ -1,0 +1,54 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+body {
+  background-color: black;
+}
+
+#video {
+  transform: scaleX(-1);
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+}
+
+#iniciar {
+  position: absolute;
+  width: 100vw;
+  height: auto;
+  z-index: 999;
+
+  &.esconder {
+    display: none;
+  }
+}
+
+#canvas {
+  position: absolute;
+  z-index: 9;
+}
+
+#superficieTacto {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
