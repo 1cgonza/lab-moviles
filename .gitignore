@@ -3,6 +3,8 @@ node_modules
 .cache
 *.log
 
+_diseños/
+
 # Temporales
 .DS_Store
 ._*

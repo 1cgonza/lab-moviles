@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 // import { babel } from '@rollup/plugin-babel';
 import browserSync from 'rollup-plugin-browsersync';
-import html from '@open-wc/rollup-plugin-html';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 import postcss from 'rollup-plugin-postcss';
 import url from '@rollup/plugin-url';
 import autoprefixer from 'autoprefixer';
@@ -18,22 +18,16 @@ const configuraciones = entradas.map((nombre, i) => {
   return {
     input: i === 0 ? `src/programa.js` : `proyectos/${nombre}/programa.js`,
     output: {
-      //file: i === 0 ? 'docs/programa.js' : `docs/${nombre}/programa.js`,
-      dir: i === 0 ? 'docs' : `docs/${nombre}`,
-      format: 'esm',
-      name: 'proyectos',
+      file: i === 0 ? 'docs/programa.js' : `docs/${nombre}/programa.js`,
+      // dir: i === 0 ? 'docs' : `docs/${nombre}`,
+      format: 'iife',
       sourcemap: true,
     },
-    external: ['eventemitter3', 'motion-sensors-polyfill'],
     plugins: [
+      nodePolyfills(),
       resolve(), // Permite usar módulos de NPM
-
-      // babel({
-      //   exclude: 'node_modules/**',
-      //   babelHelpers: 'runtime',
-      // }),
       commonjs(), // Convierte estos módulos a CommonJS para que se puedan usar
-      html({ files: i === 0 ? 'src/index.html' : `proyectos/${nombre}/index.html` }),
+      // html({ files: i === 0 ? 'src/index.html' : `proyectos/${nombre}/index.html` }),
       postcss({
         extract: i === 0 ? path.resolve('docs', 'estilos.css') : path.resolve('docs', nombre, 'estilos.css'),
         minimize: produccion,
@@ -46,7 +40,13 @@ const configuraciones = entradas.map((nombre, i) => {
       }),
       url(),
       copy({
-        targets: [{ src: 'src/imgs/**/*', dest: 'docs/imgs' }],
+        targets: [
+          { src: 'src/imgs/**/*', dest: 'docs/imgs' },
+          {
+            src: i === 0 ? 'src/index.html' : `proyectos/${nombre}/index.html`,
+            dest: i === 0 ? 'docs' : `docs/${nombre}`,
+          },
+        ],
       }),
       produccion && terser(),
       !produccion &&

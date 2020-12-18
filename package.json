@@ -2,7 +2,7 @@
   "name": "lab-moviles",
   "version": "0.0.1",
   "description": "Resultados del Laboratorio Arte y Dispositivos Móviles - CKWeb & Idartes.",
-  "main": "index.js",
+  "main": "src/programa.js",
   "repository": "https://github.com/1cgonza/lab-moviles.git",
   "author": "Juan Camilo González Jiménez <j.gonzalezj@uniandes.edu.co>",
   "license": "MIT",
@@ -12,21 +12,16 @@
     "start": "rollup -cw"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.10",
-    "@babel/preset-env": "^7.12.10",
-    "@open-wc/rollup-plugin-html": "^1.2.5",
-    "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
     "@rollup/plugin-url": "^6.0.0",
     "autoprefixer": "^10.1.0",
-    "cross-env": "^7.0.3",
-    "postcss": "^8.2.0",
+    "postcss": "^8.2.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.34.2",
     "rollup-plugin-browsersync": "^1.3.1",
     "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.30.0"
@@ -44,8 +39,8 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime": "^7.12.5",
     "eventemitter3": "^4.0.7",
-    "motion-sensors-polyfill": "^0.3.1"
+    "motion-sensors-polyfill": "^0.3.1",
+    "rae": "^1.0.3"
   }
 }
