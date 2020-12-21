@@ -1,1 +1,67 @@
-<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tarea dificil</title><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="./estilos.css"></head><body><div id="mensajes"><span id="texto" class="palpitar"></span></div><div id="intro"><div id="iniciar" class="esconder">Iniciar</div></div><div id="app" class=""><div id="consola"></div><canvas id="plano"></canvas><div id="ondas"></div></div><script src="./programa.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>espacio, ¿límite?</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400&family=Noto+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./icono.ico" />
+    <link rel="stylesheet" href="./estilos.css" />
+  </head>
+  <body>
+    <div id="mensajes">
+      <span id="texto" class="palpitar"></span>
+    </div>
+
+    <div id="intro">
+      <!--SLIDER-->
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <h1 class="titulo">espacio, ¿límite?</h1>
+            <p class="informacion">
+              es una invitación a explorar un desierto lleno de pistas, que intentan reconstruir las ruinas de un
+              imaginario personal que lucha por ser preservado
+            </p>
+          </div>
+          <div class="swiper-slide">
+            <h1 class="titulo">instrucciones</h1>
+            <p class="informacion">
+              ésta experiencia utiliza el movimiento y la rotación de tu teléfono para contar los pasos en tu espacio
+              físico y poder explorar el espacio virtual
+              <br />
+              <br />
+              <br />
+              <img class="centrar" src="./personaje-intro.png" width="135" />
+            </p>
+            <div class="inferior">
+              <h2 id="iniciar" class="esconder">» explorar «</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- SLIDER -->
+    <div id="fondoblur" class="desaparece"></div>
+
+    <div id="app" class="">
+      <div id="consola"></div>
+      <canvas id="plano"></canvas>
+      <canvas id="sinlimite" class="capamask"></canvas>
+      <canvas id="planopeq"></canvas>
+    </div>
+    <canvas id="posicionMapa"></canvas>
+    <canvas id="fantasmas"></canvas>
+    <div id="textosFantasma"></div>
+    <script src="./programa.js"></script>
+  </body>
+</html>

@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "rimraf docs",
     "build": "yarn clean && rollup -c",
-    "start": "rollup -cw"
+    "start": "yarn clean && rollup -cw"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -41,6 +41,7 @@
   "dependencies": {
     "eventemitter3": "^4.0.7",
     "motion-sensors-polyfill": "^0.3.1",
-    "rae": "^1.0.3"
+    "rae": "^1.0.3",
+    "swiper": "^6.4.5"
   }
 }

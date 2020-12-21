@@ -1,0 +1,285 @@
+@import '~swiper/swiper.scss';
+@import '~swiper/components/navigation/navigation.scss';
+@import '~swiper/components/pagination/pagination.scss';
+/*Colores*/
+$colorOscuro: #232323;
+$colorClaro: #fffaf0;
+$colorClaroO: rgba(245, 241, 240, 0.6);
+$onda1: rgba(32, 150, 243, 0.4);
+$onda2: rgba(32, 150, 243, 0);
+
+/*Textos*/
+$textoMediano: 1.6em;
+$textoGrande: 2.2em;
+$tamanoParrafos: 1em;
+
+$parrafos: 'Fira Code', monospace;
+$titulos: 'Noto Serif', serif;
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.esconder {
+  display: none;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+#intro {
+  width: 99vw;
+  height: 99vh;
+
+  .swiper-container {
+    width: 90%;
+    height: calc(100% - 100px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 5;
+
+    .swiper-slide {
+      color: $colorClaro;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      .titulo {
+        font-family: $titulos;
+        font-size: $textoGrande;
+        .informacion {
+          font-family: $parrafos;
+        }
+      }
+
+      .inferior {
+        width: 100%;
+        display: flex;
+        z-index: 4;
+        justify-content: center;
+        align-items: flex-end;
+
+        .centrar {
+          display: flex;
+          z-index: 4;
+          justify-content: center;
+          align-items: flex-end;
+          margin-top: 100px;
+        }
+
+        #iniciar {
+          width: 200px;
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          z-index: 4;
+        }
+      }
+    }
+  }
+}
+
+.swiper-pagination {
+  position: relative;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  margin: 8px;
+  background: #232323;
+}
+
+#fondoblur {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  background-color: $colorClaroO;
+}
+
+p {
+  font-size: $tamanoParrafos;
+  font-family: $parrafos;
+  color: $colorOscuro;
+  letter-spacing: -0.6pt;
+  text-align: center;
+}
+
+h1 {
+  color: $colorOscuro;
+  font-family: $titulos;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: $textoMediano;
+  color: $colorOscuro;
+  font-family: $titulos;
+}
+
+#mensajes {
+  width: 100vw;
+  height: 100vh;
+  background-color: $colorOscuro;
+  position: fixed;
+  z-index: 9;
+
+  &.mostrar {
+    display: block;
+  }
+
+  #texto {
+    color: $colorClaro;
+    pointer-events: none;
+    font-family: $parrafos;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 40vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation-duration: 2.25s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+    &.palpitar {
+      animation-name: palpitar;
+    }
+  }
+}
+
+@keyframes palpitar {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+#consola {
+  font-size: $textoGrande;
+  font-style: $parrafos;
+  padding: 1em;
+  color: $colorClaro;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+}
+
+#plano {
+  z-index: 2;
+}
+
+.circulo {
+  position: relative;
+  height: 360px;
+  width: 360px;
+  display: none;
+  z-index: 9999;
+
+  &.prendido {
+    display: block;
+  }
+
+  .onda {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 86%;
+    height: 86%;
+    background: $onda1;
+    border-radius: 50%;
+    opacity: 0;
+    animation: radarWave cubic-bezier(0, 0.54, 0.53, 1) 3s;
+    animation-iteration-count: infinite;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 86%;
+      height: 86%;
+      background: $onda1;
+      border-radius: 50%;
+      opacity: 0;
+      animation: radarWave cubic-bezier(0, 0.54, 0.53, 1) 3s;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+#fantasmas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.8;
+  z-index: 9999;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+  &.palpitar {
+    animation-name: palpitar;
+  }
+
+  &.apagado {
+    transition: opacity 3s ease-out;
+    animation-name: none;
+    opacity: 0;
+  }
+}
+
+.capamask {
+  position: absolute;
+  clip-path: circle(10px);
+}
+
+#textosFantasma {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 9999;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-name: palpitar;
+  font-size: 1em;
+  font-family: $parrafos;
+  width: 50vw;
+  color: $colorClaro;
+
+  &.apagado {
+    transition: opacity 3s ease-out;
+    animation-name: none;
+    opacity: 0;
+  }
+}

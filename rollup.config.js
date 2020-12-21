@@ -43,6 +43,14 @@ const configuraciones = entradas.map((nombre, i) => {
         targets: [
           { src: 'src/imgs/**/*', dest: 'docs/imgs' },
           {
+            src: 'proyectos/espacio-limite/imgs/icono.ico',
+            dest: 'docs/espacio-limite',
+          },
+          {
+            src: 'proyectos/espacio-limite/imgs/personaje-intro.png',
+            dest: 'docs/espacio-limite',
+          },
+          {
             src: i === 0 ? 'src/index.html' : `proyectos/${nombre}/index.html`,
             dest: i === 0 ? 'docs' : `docs/${nombre}`,
           },
