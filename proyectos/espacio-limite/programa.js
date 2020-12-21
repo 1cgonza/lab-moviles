@@ -48,6 +48,8 @@ let rotacion = 0;
 //Ref es la posición del mapa
 const ref = new Vector();
 const centro = new Vector(x, y);
+const nuevo = new Vector();
+
 
 //aca el cargador me permite cargar imagenes y sonidos como variables
 const cargador = new Cargador();
@@ -82,6 +84,8 @@ function iniciar() {
   ref.x = aleatorio(canvasPlano.width, planoImg.naturalWidth - canvasPlano.width);
   ref.y = aleatorio(canvasPlano.height, planoImg.naturalHeight - canvasPlano.height);
 
+  nuevo.x = aleatorio(canvasPlano.width, planoImg.naturalWidth - canvasPlano.width);
+  nuevo.y = aleatorio(canvasPlano.height, planoImg.naturalHeight - canvasPlano.height);
   //esto hace que la imagen esté al fon en al momento de la introducción
   pintarFondo();
   /* Acciones que suceden al dar clic:
@@ -115,8 +119,18 @@ function iniciar() {
       } else if (moviendoseAdelante) {
         pasos++;
         consola.innerText = `${pasos}`;
+        if (ref.x >= 2450 || ref.x <= 50 || ref.y >= 2450 || ref.y <= 50) {
+          console.log('no');
+          ref.x = nuevo.x;
+          ref.y = nuevo.y;
+          //ref.x = -ref.x;
+        } else {
+          console.log(ref.x, ref.y);
+          y += 5;
+        }
+
         moviendoseAdelante = false;
-        y += 5;
+
         const _x = Math.sin(rotacion) * 30;
         const _y = Math.cos(rotacion) * 30;
 
@@ -129,6 +143,7 @@ function iniciar() {
         }
       }
     };
+
     accl.start();
   };
 }
@@ -205,6 +220,17 @@ function dibujar() {
   });
 }
 
+document.body.addEventListener('mousemove', (e) => {
+  ref.x = e.pageX;
+  ref.y = e.pageY;
+  if (ref.x >= 2500 || ref.x <= 0 || ref.y >= 2500 || ref.y <= 0) {
+    console.log('nopi');
+  } else {
+    console.log(ref.x, ref.y);
+    dibujar();
+  }
+});
+
 function actualizarDimensiones() {
   canvasPlano.width = window.innerWidth;
   canvasPlano.height = window.innerHeight;
@@ -213,4 +239,7 @@ function actualizarDimensiones() {
     x: canvasPlano.width / 2,
     y: canvasPlano.height / 2,
   };
+  /*
+
+  */
 }

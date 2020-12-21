@@ -145,10 +145,11 @@ export default [
     url: foto14,
   },
   {
-    vector: new Vector(2437, 2424),
+    vector: new Vector(2390, 2398),
     distMin: 300,
     ele: null,
     tipo: 'imagen',
     mensaje: foto15,
   },
+
 ];
