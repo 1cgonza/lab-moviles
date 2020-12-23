@@ -117,7 +117,7 @@ export default [
     url: foto11,
   },
   {
-    vector: new Vector(826, 1655),
+    vector: new Vector(812, 1640),
     distMin: 300,
     ele: null,
     tipo: 'texto',
@@ -145,7 +145,7 @@ export default [
     url: foto14,
   },
   {
-    vector: new Vector(2390, 2398),
+    vector: new Vector(2423, 2410),
     distMin: 300,
     ele: null,
     tipo: 'imagen',

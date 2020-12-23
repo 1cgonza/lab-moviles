@@ -239,7 +239,4 @@ function actualizarDimensiones() {
     x: canvasPlano.width / 2,
     y: canvasPlano.height / 2,
   };
-  /*
-
-  */
 }

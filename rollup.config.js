@@ -66,7 +66,7 @@ const configuraciones = entradas.map((nombre, i) => {
           open: false,
           server: 'docs',
           files: ['src/**/*.*'],
-          https: true
+          https: true,
         }),
     ],
   };
