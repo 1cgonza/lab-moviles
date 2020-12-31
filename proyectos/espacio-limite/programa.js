@@ -147,7 +147,7 @@ function iniciar() {
     accl.start();
   };
 }
-
+  
 function pintarFondo() {
   const planoImg = plano.elemento;
 

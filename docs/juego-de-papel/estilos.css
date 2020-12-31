@@ -1,0 +1,66 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.elementoCentrado {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#video {
+  z-index: 1;
+}
+
+#opcion1,
+#opcion2 {
+  z-index: 2;
+  display: none;
+}
+
+.opcion {
+  cursor: pointer;
+}
+
+#resultados {
+  position: absolute;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.resultado {
+  width: 100%;
+  height: auto;
+  display: none;
+  pointer-events: auto;
+}
+
+::placeholder {
+  color: gray;
+}
+
+/* SVG */
+.fondo,
+.opcion {
+  fill: transparent;
+}
+/*# sourceMappingURL=estilos.css.map */

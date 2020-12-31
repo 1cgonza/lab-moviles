@@ -1,1 +1,167 @@
-@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Major+Mono+Display&display=swap");html{box-sizing:border-box;height:100%}*,:after,:before{box-sizing:inherit}body,html{margin:0;padding:0}body{width:100vw;height:100vh;background-color:#1a1a1a;font-family:Cutive Mono,monospace;color:azure}::selection{background:#ff0;color:#000}a,a:visited{color:#ff0;text-decoration:none}a:focus,a:hover,a:visited:focus,a:visited:hover{color:#990}a:link,a:visited:link{-webkit-tap-highlight-color:rgba(0,0,0,.3)}p{letter-spacing:1px;line-height:1.4}ul{list-style:none;margin:0;padding:0}.centrado,.titulo{text-align:center}.titulo{opacity:.5;line-height:1.1;font-family:Major Mono Display,monospace}h1.titulo{font-size:5.3vw;margin-bottom:0}h2.titulo{font-size:3vw}h3.titulo{margin:3em 0 0}section{width:90vw;margin:0 auto}footer{text-align:center;padding:3em 0 5em;font-size:.75em}#participantes{text-align:center;margin-top:1em;line-height:2}#participantes li{display:inline-block;letter-spacing:1.2px}#participantes li:before{content:"|";display:inline-block;padding-right:1em}#participantes li:after{content:"|";display:inline-block;padding-left:1em}#proyectos{width:100vw}#galeria{display:flex;flex-wrap:wrap;justify-content:space-evenly}#galeria .proyecto{width:33%;text-align:center}#galeria .proyecto img{line-height:0;width:100%;height:auto}@media only screen and (min-width:768px){section{width:70vw}#proyectos{width:80vw}}@media only screen and (min-width:1240px){#proyectos,section{width:1200px}h1.titulo{font-size:5em;margin-bottom:0}h2.titulo{font-size:2.8em}#proyectos{width:100vw}#galeria .proyecto{width:20%}}
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Major+Mono+Display&display=swap");
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #1a1a1a;
+  font-family: "Cutive Mono", monospace;
+  color: azure;
+}
+
+::selection {
+  background: yellow;
+  color: black;
+}
+
+a,
+a:visited {
+  color: yellow;
+  text-decoration: none;
+}
+a:hover, a:focus,
+a:visited:hover,
+a:visited:focus {
+  color: #999900;
+}
+a:link,
+a:visited:link {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+p {
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.centrado {
+  text-align: center;
+}
+
+.titulo {
+  opacity: 0.5;
+  text-align: center;
+  line-height: 1.1;
+  font-family: "Major Mono Display", monospace;
+}
+
+h1.titulo {
+  font-size: 5.3vw;
+  margin-bottom: 0;
+}
+
+h2.titulo {
+  font-size: 3vw;
+}
+
+h3.titulo {
+  margin: 3em 0 0;
+}
+
+section {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+  padding: 3em 0 5em 0;
+  font-size: 0.75em;
+}
+
+#participantes {
+  text-align: center;
+  margin-top: 1em;
+  line-height: 2;
+}
+#participantes li {
+  display: inline-block;
+  letter-spacing: 1.2px;
+}
+#participantes li::before {
+  content: "|";
+  display: inline-block;
+  padding-right: 1em;
+}
+#participantes li::after {
+  content: "|";
+  display: inline-block;
+  padding-left: 1em;
+}
+
+#proyectos {
+  width: 100vw;
+}
+
+#galeria {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+#galeria .proyecto {
+  width: 33%;
+  text-align: center;
+}
+#galeria .proyecto img {
+  line-height: 0;
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  section {
+    width: 70vw;
+  }
+
+  #proyectos {
+    width: 80vw;
+  }
+}
+@media only screen and (min-width: 1240px) {
+  section {
+    width: 1200px;
+  }
+
+  #proyectos {
+    width: 1200px;
+  }
+
+  h1.titulo {
+    font-size: 5em;
+    margin-bottom: 0;
+  }
+
+  h2.titulo {
+    font-size: 2.8em;
+  }
+
+  #proyectos {
+    width: 100vw;
+  }
+
+  #galeria .proyecto {
+    width: 20%;
+  }
+}
+/*# sourceMappingURL=estilos.css.map */
