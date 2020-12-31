@@ -220,17 +220,6 @@ function dibujar() {
   });
 }
 
-document.body.addEventListener('mousemove', (e) => {
-  ref.x = e.pageX;
-  ref.y = e.pageY;
-  if (ref.x >= 2500 || ref.x <= 0 || ref.y >= 2500 || ref.y <= 0) {
-    console.log('nopi');
-  } else {
-    console.log(ref.x, ref.y);
-    dibujar();
-  }
-});
-
 function actualizarDimensiones() {
   canvasPlano.width = window.innerWidth;
   canvasPlano.height = window.innerHeight;
