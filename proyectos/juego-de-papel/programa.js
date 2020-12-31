@@ -19,7 +19,6 @@ const resultados = {
 const numeroResultados = Object.keys(resultados).length;
 let reproduciendo = false;
 let elementosCargados = 0;
-console.log(video);
 
 function cargador(e) {
   resultadosContenedor.appendChild(e.target);
@@ -43,7 +42,6 @@ for (let color in resultados) {
 
   resultados[color].img = img;
 }
-console.dir(opciones);
 
 opciones.forEach((opcion) => {
   opcion.onclick = () => {
@@ -100,7 +98,6 @@ video.ontimeupdate = () => {
   const tiempo = video.currentTime;
   if (reproduciendo) {
     if (tiempo < 0.5) {
-      console.log('working');
       video.style.cursor = 'default';
       // Esta al inicio del video y esta cerrado
     } else if (tiempo >= 0.5 && tiempo < 1) {
