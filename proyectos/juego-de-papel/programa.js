@@ -43,6 +43,7 @@ for (let color in resultados) {
 
   resultados[color].img = img;
 }
+console.dir(opciones);
 
 opciones.forEach((opcion) => {
   opcion.onclick = () => {
@@ -53,6 +54,7 @@ opciones.forEach((opcion) => {
 });
 
 video.onclick = (e) => {
+  e.preventDefault();
   if (reproduciendo) {
     const tiempo = video.currentTime;
 
@@ -94,7 +96,7 @@ function escalarAPantalla() {
   Object.assign(resultadosContenedor.style, css);
 }
 
-video.ontimeupdate = function pointers() {
+video.ontimeupdate = () => {
   const tiempo = video.currentTime;
   if (reproduciendo) {
     if (tiempo < 0.5) {
