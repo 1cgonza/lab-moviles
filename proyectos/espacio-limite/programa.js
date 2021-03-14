@@ -26,7 +26,10 @@ const fantasmasCanvas = document.getElementById('fantasmas');
 const fantasmasCtx = fantasmasCanvas.getContext('2d');
 fantasmasCanvas.width = window.innerWidth;
 fantasmasCanvas.height = window.innerHeight;
-
+/*
+const pantallaCompu = document.getElementById('pantalla-computadora');
+const pantallaTelf = document.getElementById('intro');
+*/
 import mapaUrl from './imgs/mapa.jpg';
 import piedraUrl from './imgs/piedra.png';
 import miniMapaUrl from './imgs/mini-mapa.png';
@@ -157,10 +160,6 @@ function pintarFondo() {
   ctxPlano.restore();
 }
 
-function mapear(valor, x1, y1, x2, y2) {
-  return ((valor - x1) * (y2 - x2)) / (y1 - x1) + x2;
-}
-
 function dibujar() {
   const piedraImg = piedra.elemento;
   const miniMapF = miniMap.elemento;
@@ -190,21 +189,12 @@ function dibujar() {
     ctxPlano,
     posImg,
     -rotacion,
-    window.innerWidth - miniMapF.naturalWidth - 10 + mapearX - 10,
-    window.innerHeight - miniMapF.naturalHeight - 10 + mapearY - 10,
+    window.innerWidth - miniMapF.naturalWidth - 10 + mapearX,
+    window.innerHeight - miniMapF.naturalHeight - 10 + mapearY,
     posImg.naturalWidth / 2,
     posImg.naturalHeight / 2
   );
 
-  /*
-  ctxPlano.drawImage(
-    posImg,
-    window.innerWidth - miniMapF.naturalWidth - 10 + mapearPersonajex - 10,
-    window.innerHeight - miniMapF.naturalHeight - 10 + mapearPersonajey - 10,
-    20,
-    20
-  );
-*/
   datosColisiones.forEach((d) => {
     const _x = canvasPlano.width / 2 - ref.x;
     const _y = canvasPlano.height / 2 - ref.y;
@@ -241,7 +231,25 @@ function rotarPosicion(mapa, flecha, angulo, posicionX, posicionY, axisX, axisY)
   mapa.rotate(-angulo);
   mapa.translate(-posicionX, -posicionY);
 }
+/*
+function desdeCompu() {
+  const w = window.innerWidth;
 
+  if (w >= 800) {
+    pantallaCompu.style.display = 'block';
+    pantallaTelf.style.display = 'none';
+  } else {
+    pantallaCompu.style.display = 'none';
+    pantallaTelf.style.display = 'block';
+  }
+}
+*/
+function mapear(valor, x1, y1, x2, y2) {
+  return ((valor - x1) * (y2 - x2)) / (y1 - x1) + x2;
+}
+/*
+desdeCompu();
+*/
 function actualizarDimensiones() {
   canvasPlano.width = window.innerWidth;
   canvasPlano.height = window.innerHeight;
