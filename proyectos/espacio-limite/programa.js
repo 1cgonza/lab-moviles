@@ -50,7 +50,6 @@ const ref = new Vector();
 const centro = new Vector(x, y);
 const nuevo = new Vector();
 
-
 //aca el cargador me permite cargar imagenes y sonidos como variables
 const cargador = new Cargador();
 // De momento el cargador reconoce 'imagen' y 'sonido'.
@@ -143,11 +142,10 @@ function iniciar() {
         }
       }
     };
-
     accl.start();
   };
 }
-  
+
 function pintarFondo() {
   const planoImg = plano.elemento;
 
@@ -159,12 +157,17 @@ function pintarFondo() {
   ctxPlano.restore();
 }
 
+function mapear(valor, x1, y1, x2, y2) {
+  return ((valor - x1) * (y2 - x2)) / (y1 - x1) + x2;
+}
+
 function dibujar() {
   const piedraImg = piedra.elemento;
   const miniMapF = miniMap.elemento;
   const posImg = posMapa.elemento;
-  const mapearPersonajex = (ref.x / 2500) * 75;
-  const mapearPersonajey = (ref.y / 2500) * 75;
+
+  const mapearX = mapear(ref.x, 0, 2500, 0, 76);
+  const mapearY = mapear(ref.y, 0, 2500, 0, 76);
 
   pintarFondo();
 
@@ -183,6 +186,17 @@ function dibujar() {
     miniMapF.naturalHeight
   );
 
+  rotarPosicion(
+    ctxPlano,
+    posImg,
+    -rotacion,
+    window.innerWidth - miniMapF.naturalWidth - 10 + mapearX - 10,
+    window.innerHeight - miniMapF.naturalHeight - 10 + mapearY - 10,
+    posImg.naturalWidth / 2,
+    posImg.naturalHeight / 2
+  );
+
+  /*
   ctxPlano.drawImage(
     posImg,
     window.innerWidth - miniMapF.naturalWidth - 10 + mapearPersonajex - 10,
@@ -190,7 +204,7 @@ function dibujar() {
     20,
     20
   );
-
+*/
   datosColisiones.forEach((d) => {
     const _x = canvasPlano.width / 2 - ref.x;
     const _y = canvasPlano.height / 2 - ref.y;
@@ -218,6 +232,14 @@ function dibujar() {
       }
     }
   });
+}
+
+function rotarPosicion(mapa, flecha, angulo, posicionX, posicionY, axisX, axisY) {
+  mapa.translate(posicionX, posicionY);
+  mapa.rotate(angulo);
+  mapa.drawImage(flecha, -axisX, -axisY);
+  mapa.rotate(-angulo);
+  mapa.translate(-posicionX, -posicionY);
 }
 
 function actualizarDimensiones() {
