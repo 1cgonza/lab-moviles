@@ -192,7 +192,7 @@ function dibujar() {
     window.innerWidth - miniMapF.naturalWidth - 10 + mapearX,
     window.innerHeight - miniMapF.naturalHeight - 10 + mapearY,
     posImg.naturalWidth / 2,
-    posImg.naturalHeight / 2
+    posImg.naturalHeight / 2 
   );
 
   datosColisiones.forEach((d) => {
