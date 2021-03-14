@@ -145,10 +145,11 @@ function iniciar() {
         }
       }
     };
+
     accl.start();
   };
 }
-
+  
 function pintarFondo() {
   const planoImg = plano.elemento;
 
@@ -243,13 +244,14 @@ function desdeCompu() {
     pantallaTelf.style.display = 'block';
   }
 }
+desdeCompu();
 */
+
 function mapear(valor, x1, y1, x2, y2) {
   return ((valor - x1) * (y2 - x2)) / (y1 - x1) + x2;
 }
-/*
-desdeCompu();
-*/
+
+
 function actualizarDimensiones() {
   canvasPlano.width = window.innerWidth;
   canvasPlano.height = window.innerHeight;
