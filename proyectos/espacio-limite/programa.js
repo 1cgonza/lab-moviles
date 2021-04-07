@@ -149,7 +149,7 @@ function iniciar() {
     accl.start();
   };
 }
-  
+
 function pintarFondo() {
   const planoImg = plano.elemento;
 
@@ -232,20 +232,6 @@ function rotarPosicion(mapa, flecha, angulo, posicionX, posicionY, axisX, axisY)
   mapa.rotate(-angulo);
   mapa.translate(-posicionX, -posicionY);
 }
-/*
-function desdeCompu() {
-  const w = window.innerWidth;
-
-  if (w >= 800) {
-    pantallaCompu.style.display = 'block';
-    pantallaTelf.style.display = 'none';
-  } else {
-    pantallaCompu.style.display = 'none';
-    pantallaTelf.style.display = 'block';
-  }
-}
-desdeCompu();
-*/
 
 function mapear(valor, x1, y1, x2, y2) {
   return ((valor - x1) * (y2 - x2)) / (y1 - x1) + x2;
