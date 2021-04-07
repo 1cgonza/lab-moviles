@@ -105,7 +105,7 @@ function iniciar() {
       dibujar();
     });
 
-    let minMov = 0.65;
+    let minMov = 0.5;
     let moviendoseAdelante = false;
     let pasos = 0;
 
@@ -149,7 +149,7 @@ function iniciar() {
     accl.start();
   };
 }
-  
+
 function pintarFondo() {
   const planoImg = plano.elemento;
 
@@ -193,7 +193,7 @@ function dibujar() {
     window.innerWidth - miniMapF.naturalWidth - 10 + mapearX,
     window.innerHeight - miniMapF.naturalHeight - 10 + mapearY,
     posImg.naturalWidth / 2,
-    posImg.naturalHeight / 2 
+    posImg.naturalHeight / 2
   );
 
   datosColisiones.forEach((d) => {
@@ -250,7 +250,6 @@ desdeCompu();
 function mapear(valor, x1, y1, x2, y2) {
   return ((valor - x1) * (y2 - x2)) / (y1 - x1) + x2;
 }
-
 
 function actualizarDimensiones() {
   canvasPlano.width = window.innerWidth;
